@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: institution-management
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:file:./data/institution_management
+    username: institution_management
+    password: institution_management_pass
+    driver-class-name: org.h2.Driver
+
+server:
+  port: 8081
+
+management:
+  server:
+    port: 9081
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      health:
+        show-details: always
+
+app:
+  institution-management:
+    secret-key: "+k5wJb1hL78oLMT4FYFkd7279CsV952IV/8drBbn9rw="
+    expiration-time: 1000
+
