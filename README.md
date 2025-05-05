@@ -55,3 +55,43 @@ The application exposes a set of RESTful APIs for managing institutions and user
 ### Swagger UI
 
 - You can access the Swagger UI for API documentation and testing at ``http://localhost:8081/swagger-ui.html``.
+
+#### _Note_
+ It is recommended to use **Postman** for testing, as most APIs require a valid **JWT Token** in the `Authorization` header to work properly.
+
+## How to Test the APIs
+
+To access most of the secured endpoints, you must first obtain a JWT token by logging in. Here's how to test the APIs using a tool like **Postman**:
+
+### 1. Get JWT Token
+
+- **Endpoint**: `POST /user/login`
+- **Request Body** (JSON):
+  ```json
+  {
+    "username": "your_username",
+    "password": "your_password"
+  }
+  
+- **Response** (JSON):
+  ```json
+  {
+    "token": "your_jwt_token_here"
+  }
+
+### 2. Use Token to Access Secured Endpoints
+
+Once you receive the token, include it in the `Authorization` header for all subsequent requests:
+
+- **Header**:
+  Authorization: Bearer your_jwt_token_here
+
+**Example Usage:**
+- **Endpoint:** `GET /institution/all`
+- **Authorization Header:** `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6...`
+
+Make sure to replace `your_jwt_token_here` with the actual token received from the login response.
+
+Without a valid token, protected endpoints will return `401` Unauthorized.
+
+
